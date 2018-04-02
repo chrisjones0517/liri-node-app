@@ -20,12 +20,12 @@ An entire list of searches and commands is stored in a file called log.txt. For 
 
 The .env file you create should look like the following:
 
- #####Spotify API keys
+ ######Spotify API keys
 
 SPOTIFY_ID=yourID
 SPOTIFY_SECRET=yourSecret
 
- #####Twitter API keys
+ ######Twitter API keys
 
 TWITTER_CONSUMER_KEY=yourKey
 TWITTER_CONSUMER_SECRET=yourSecret
