@@ -7,7 +7,14 @@ var Spotify = require('node-spotify-api');
 var keys = require('./keys.js');
 
 var selection = process.argv[2];
-var value = process.argv[3];
+var valueArr = [];
+var value;
+
+for (var i = 3; i < process.argv.length; i++) {
+    valueArr.push(process.argv[i]);
+    value = valueArr.join(',');
+    value = value.replace(/,/g, ' ');
+}
 
 fs.appendFile('./log.txt', '\n' + selection + '\n' + value, function (error) {
     if (error) {
@@ -35,7 +42,7 @@ if (selection === 'my-tweets') {
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
 
         if (!error) {
-            
+
             for (var i = 0; i < tweets.length; i++) {
 
                 var tweetData = `
@@ -68,7 +75,7 @@ if (selection === 'spotify-this-song') {
     spotify.search({ type: 'track', query: songQuery, limit: 10 }, function (error, data) {
 
         if (!error) {
-            
+
             for (var i = 0; i < data.tracks.items.length; i++) {
                 var songData = `
                     Song name: ${data.tracks.items[i].name}
@@ -102,18 +109,19 @@ if (selection === 'movie-this') {
     request(queryUrl, function (error, response, body) {
 
         if (!error && response.statusCode === 200) {
-
-            var movieData = `
-            Title: ${JSON.parse(body).Title} 
-            Year: ${JSON.parse(body).Year}
-            IMDB Rating: ${JSON.parse(body).imdbRating}
-            Rotten Tomatoes Rating: ${JSON.parse(body).Ratings[1].Value}
-            Country: ${JSON.parse(body).Country}
-            Language: ${JSON.parse(body).Language}
-            Plot: ${JSON.parse(body).Plot}
-            Actors: ${JSON.parse(body).Actors}
-            `;
             
+            var head = JSON.parse(body);
+            var movieData = `
+                Title: ${head.Title} 
+                Year: ${head.Year}
+                IMDB Rating: ${head.imdbRating}
+                Rotten Tomatoes Rating: ${head.Ratings[1].Value}
+                Country: ${head.Country}
+                Language: ${head.Language}
+                Plot: ${head.Plot}
+                Actors: ${head.Actors}
+            `;
+
             console.log(movieData);
             fs.appendFile('./log.txt', movieData, function (error) {
                 if (error) {
