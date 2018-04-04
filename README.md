@@ -6,13 +6,13 @@ This app interfaces with the command line using node.js. The first two arguments
 3. spotify-this-song
 4. do-what-it-says
 
-e.g. node liri.js movie-this 'The Fast and the Furious'
+e.g. node liri.js movie-this The Fast and the Furious
 
-If movie-this is chosen, an optional fourth argument can be input by the user which will be the title of the movie he/she wishes to query. Movies containing more than one word should be wrapped in quotations. If the user leaves out the optional fourth argument, the default choice of 'Mr. Nobody' will be used instead of user input.
+If movie-this is chosen, an optional fourth argument can be input by the user which will be the title of the movie he/she wishes to query. If the user leaves out the optional fourth argument, the default choice of 'Mr. Nobody' will be used instead of user input.
 
 If my-tweets is chosen, the optional fourth argument can be the screen name of the twitter user whose tweets this user wishes to display. If this argument is left blank, the default user is my 'dummy' account.
 
-If spotify-this-song is chosen, the optional fourth argument should be the song the user wishes to query or link to. If this input is left undefined, the default search is set to 'The Sign' by Ace of Base. As with the movie example, songs with multiple words should be wrapped in quotations.
+If spotify-this-song is chosen, the optional fourth argument should be the song the user wishes to query or link to. If this input is left undefined, the default search is set to 'The Sign' by Ace of Base. 
 
 If do-what-it-says is chosen as the third argument, the default file contents of spotify-this-song "I Want it That Way" are input into the app, which generates spotify information about the song, album, and band, as well as a link to the song.
 
